@@ -1,0 +1,267 @@
+---
+title: "2014 Vanderbilt is the Worst Team to Win the College World Series Statistically"
+author: "Andrew Skaggs"
+date: '2025-11-17'
+categories: [College Baseball, CWS]
+image: "chart.png"
+format: 
+  html:
+    code-fold: true
+
+---
+
+Omaha has seen 76 teams win a championship at Rosenblatt and TD Ameritrade stadiums since the inaugural College World Series in 1947. I have always been curious about who the worst team to ever win the tournament was statistically.
+
+When I initially started this project, I assumed that the worst CWS champion ever would be a team in the wooden bat era of college. Metal bats were not allowed in college baseball until the 1974 season. The bats were weakend in 2012 and offensive numbers in college saw a steep drop while defensive stats saw an improvement in areas like ERA.
+
+Throughout the process of making this blog, I had just one question. Who is the worst statistical team to ever win the College World Series?
+
+In compiling all of my data and making charts for different categories, I have determined that the 2014 season saw the worst College World Series champion ever. That team being the Vanderbilt Commodores.
+
+```{r message=FALSE, warning=FALSE}
+library(tidyverse)
+library(ggrepel)
+
+
+## == 1. LOAD & PREP DATA ==
+
+batting  <- read_csv("cwsbatting.csv")
+pitching <- read_csv("cwsfielding.csv")
+
+# Join batting + pitching on Year, Team, W-L
+cws <- batting %>%
+  select(
+    Year,
+    Team,
+    W.L = `W-L`,
+    R,          # runs scored
+    BA
+  ) %>%
+  left_join(
+    pitching %>%
+      select(
+        Year,
+        Team,
+        W.L = `W-L`,
+        ERA,
+        R_allowed = R   # runs allowed from pitching table
+      ),
+    by = c("Year", "Team", "W.L")
+  ) %>%
+  # drop rows with missing ERA or runs allowed so they don't break things
+  drop_na(ERA, R_allowed) %>%
+  # split W-L and compute games + per-game stats
+  mutate(
+    Wins   = as.numeric(sub("-.*", "", W.L)),
+    Losses = as.numeric(sub(".*-", "", W.L)),
+    Games  = Wins + Losses,
+    R_per_game  = R / Games,
+    RA_per_game = R_allowed / Games
+  )
+
+# "worstness" based on hitting + pitching:
+#  - fewer runs scored per game = worse
+#  - higher ERA = worse
+# smaller total score = worse
+cws <- cws %>%
+  mutate(
+    offense_rank  = rank(R_per_game),   # low R/G = small rank = bad
+    pitching_rank = rank(-ERA),         # high ERA = small rank = bad
+    worst_score   = offense_rank + pitching_rank
+  )
+
+# Find the single worst champion
+worst_row <- cws %>%
+  arrange(worst_score) %>%
+  slice(1)
+
+worst_team <- worst_row$Team[1]
+worst_year <- worst_row$Year[1]
+
+
+# Flag just that one team+year (logical TRUE/FALSE)
+cws <- cws %>%
+  mutate(
+    is_worst = Team == worst_team & Year == worst_year
+  )
+
+
+## == 2. PLOT 1: SCATTER (OFFENSE VS PITCHING) ==
+
+p1 <- ggplot(cws, aes(x = ERA, y = R_per_game)) +
+  # all points, colored by worst vs others
+  geom_point(aes(color = is_worst), alpha = 0.8, size = 2.5) +
+  
+  # small labels
+  geom_text_repel(
+    aes(label = Team),
+    size = 2,                # small text for all teams
+    color = "grey20",
+    max.overlaps = 200,
+    show.legend = FALSE
+  ) +
+  
+  # slightly bigger, red label only for the worst champion
+  geom_text_repel(
+    data = cws %>% filter(is_worst),
+    aes(label = paste0(Team, " (", Year, ")")),
+    size = 3,
+    color = "red",
+    max.overlaps = Inf,
+    show.legend = FALSE
+  ) +
+  
+  scale_color_manual(
+    values = c(`TRUE` = "red", `FALSE` = "grey70"),
+    labels = c(`TRUE` = "Worst champion", `FALSE` = "Other champions")
+  ) +
+  labs(
+    title = "CWS Champions: Offense vs Pitching",
+    x = "ERA (higher = worse pitching)",
+    y = "Runs scored per game (lower = worse offense)",
+    color = NULL
+  ) +
+  theme_minimal(base_size = 13)
+
+p1
+```
+Now, this chart shows every champion teams ERA and runs scored per game. You'll notice Vanderbilt in 2014 is highlighted red. However, just this chart alone does not tell the whole story.
+
+```{r}
+
+## == 3. PLOT 2: OVERALL WORSTNESS BAR CHART ==
+
+cws_bar <- cws %>%
+  arrange(worst_score) %>%
+  # show, say, the 10 “worst” champions
+  slice(1:10) %>%
+  mutate(label = paste0(Team, " (", Year, ")"))
+
+p2 <- ggplot(cws_bar,
+             aes(x = reorder(label, worst_score),
+                 y = worst_score,
+                 fill = is_worst)) +
+  geom_col() +
+  coord_flip() +
+  scale_fill_manual(
+    values = c(`TRUE` = "red", `FALSE` = "black"),
+    labels = c(`TRUE` = "Worst champion", `FALSE` = "Other champions")
+  ) +
+  labs(
+    title = "Worst College World Series Champions",
+    subtitle = "(Hitting + Pitching)",
+    x = NULL,
+    y = "Combined rank (lower = worse)",
+    fill = NULL
+  ) +
+  theme_minimal(base_size = 13)
+
+p2
+```
+Above is the chart that shows the bottom 10 statistical champions. The combined rank takes the worst teams ERA and runs cored per game and adds them together. The following two graphs help tie it all together.
+```{r}
+
+
+## == 4. PLOT 3: RUNS PER GAME OVER TIME ==
+
+p3 <- ggplot(cws, aes(x = Year, y = R_per_game)) +
+  geom_line(alpha = 0.4, color = "grey70") +
+  geom_point(color = "blue") +
+  geom_point(
+    data = cws %>% filter(is_worst),
+    aes(x = Year, y = R_per_game),
+    color = "red",
+    size = 3
+  ) +
+  geom_text_repel(
+    data = cws %>% filter(is_worst),
+    aes(label = paste0(Team, " (", Year, ")")),
+    color = "red",
+    size = 3
+  ) +
+  labs(
+    title = "Runs per Game by CWS Champions",
+    x = "Year",
+    y = "Runs scored per game"
+  ) +
+  theme_minimal(base_size = 13)
+
+p3
+
+```
+As you can see, Vanderbilt has the seventh worst runs scored per game out of any CWS champion ever. However, just the runs scored per game ranking alone can not tell us that this Vanderbilt team was the worst championship team ever.
+
+```{r}
+
+## == 5. PLOT 4: ERA OVER TIME ==
+
+p4 <- ggplot(cws, aes(x = Year, y = ERA)) +
+  geom_line(alpha = 0.4, color = "grey70") +
+  geom_point(color = "blue") +
+  geom_point(
+    data = cws %>% filter(is_worst),
+    aes(x = Year, y = ERA),
+    color = "red",
+    size = 3
+  ) +
+  geom_text_repel(
+    data = cws %>% filter(is_worst),
+    aes(label = paste0(Team, " (", Year, ")")),
+    color = "red",
+    size = 3
+  ) +
+  labs(
+    title = "ERA of CWS Champions",
+    x = "Year",
+    y = "ERA (lower is better pitching)"
+  ) +
+  theme_minimal(base_size = 13)
+
+p4
+```
+
+To find the worst team to ever win the College World Series we must also look at the ERA of each team. As you can see in the chart above, it shows that Vanderbilt had the third highest ERA of any champion ever. Now that we can see the runs scored per game and the ERA of each team, we can safely say 2014 Vanderbilt was not a very good statistical team. To really drive home the point of 2014 having the worst champion, I had to use Vanderbilt's ERA and runs scored per game to find their average run differential per game.
+```{r}
+
+cws <- cws %>%
+  mutate(run_diff = R_per_game - RA_per_game)
+
+# 10 weakest champs by run differential
+df_worst10 <- cws %>%
+  arrange(run_diff) %>%          # lowest run_diff first
+  slice(1:10) %>%                # take 10 weakest champions
+  mutate(
+    label    = paste0(Team, " (", Year, ")"),
+    is_worst = Team == worst_team & Year == worst_year
+  )
+
+p_diff <- ggplot(df_worst10,
+                 aes(x = run_diff,
+                     y = reorder(label, run_diff),
+                     fill = is_worst)) +
+  geom_col(width = 0.6) +
+  geom_vline(xintercept = 0, colour = "grey80") +  # zero line like in your image
+  scale_fill_manual(
+    values = c("TRUE" = "red", "FALSE" = "black"),
+    labels = c("FALSE" = "Other Champions",
+               "TRUE"  = "Worst Champion"),
+    name   = NULL
+  ) +
+  labs(
+    title    = "Run Differential per Game (R/G − RA/G)",
+    subtitle = "10 weakest College World Series champions by run differential",
+    x        = "Run differential per game",
+    y        = NULL
+  ) +
+  
+  theme(
+    axis.text.y = element_text(size = 9)  # tweak if you want smaller/bigger labels
+  )
+
+p_diff
+```
+
+As you can see from the bottom 10 champions ever, Vanderbilt in 2014 had a negative run differential per game. They are the only team to ever have a negative run differential per game and still win the College World Series. This leads me to say and confirm that Vanderbilt in 2014 is the worst team ever statistically to leave Omaha with the championship trophy.
+```{r}
+
+```
