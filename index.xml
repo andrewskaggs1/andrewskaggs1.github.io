@@ -296,10 +296,11 @@ background-color: null;
 font-style: inherit;">y =</span> R_per_game)) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span></span>
-<span id="cb1-71">  <span class="co" style="color: #5E5E5E;
+<span id="cb1-71">  </span>
+<span id="cb1-72">  <span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># all points, colored by worst vs others</span></span>
-<span id="cb1-72">  <span class="fu" style="color: #4758AB;
+<span id="cb1-73">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">geom_point</span>(<span class="fu" style="color: #4758AB;
 background-color: null;
@@ -316,58 +317,65 @@ background-color: null;
 font-style: inherit;">2.5</span>) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span></span>
-<span id="cb1-73">  </span>
-<span id="cb1-74">  <span class="co" style="color: #5E5E5E;
+<span id="cb1-74">  </span>
+<span id="cb1-75">  <span class="co" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;"># small labels</span></span>
-<span id="cb1-75">  <span class="fu" style="color: #4758AB;
+font-style: inherit;"># labels for ALL teams EXCEPT Vanderbilt 2014</span></span>
+<span id="cb1-76">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">geom_text_repel</span>(</span>
-<span id="cb1-76">    <span class="fu" style="color: #4758AB;
+<span id="cb1-77">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> cws <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">filter</span>(<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">!</span>is_worst),</span>
+<span id="cb1-78">    <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">label =</span> Team),</span>
-<span id="cb1-77">    <span class="at" style="color: #657422;
+<span id="cb1-79">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">2</span>,                <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># small text for all teams</span></span>
-<span id="cb1-78">    <span class="at" style="color: #657422;
+font-style: inherit;">2</span>,</span>
+<span id="cb1-80">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"grey20"</span>,</span>
-<span id="cb1-79">    <span class="at" style="color: #657422;
+<span id="cb1-81">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">max.overlaps =</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">200</span>,</span>
-<span id="cb1-80">    <span class="at" style="color: #657422;
+<span id="cb1-82">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">show.legend =</span> <span class="cn" style="color: #8f5902;
 background-color: null;
 font-style: inherit;">FALSE</span></span>
-<span id="cb1-81">  ) <span class="sc" style="color: #5E5E5E;
+<span id="cb1-83">  ) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span></span>
-<span id="cb1-82">  </span>
-<span id="cb1-83">  <span class="co" style="color: #5E5E5E;
+<span id="cb1-84">  </span>
+<span id="cb1-85">  <span class="co" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;"># slightly bigger, red label only for the worst champion</span></span>
-<span id="cb1-84">  <span class="fu" style="color: #4758AB;
+font-style: inherit;"># red label ONLY for Vanderbilt 2014</span></span>
+<span id="cb1-86">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">geom_text_repel</span>(</span>
-<span id="cb1-85">    <span class="at" style="color: #657422;
+<span id="cb1-87">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">data =</span> cws <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">%&gt;%</span> <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">filter</span>(is_worst),</span>
-<span id="cb1-86">    <span class="fu" style="color: #4758AB;
+<span id="cb1-88">    <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
 background-color: null;
@@ -378,34 +386,34 @@ background-color: null;
 font-style: inherit;">" ("</span>, Year, <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">")"</span>)),</span>
-<span id="cb1-87">    <span class="at" style="color: #657422;
+<span id="cb1-89">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">3</span>,</span>
-<span id="cb1-88">    <span class="at" style="color: #657422;
+<span id="cb1-90">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"red"</span>,</span>
-<span id="cb1-89">    <span class="at" style="color: #657422;
+<span id="cb1-91">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">max.overlaps =</span> <span class="cn" style="color: #8f5902;
 background-color: null;
 font-style: inherit;">Inf</span>,</span>
-<span id="cb1-90">    <span class="at" style="color: #657422;
+<span id="cb1-92">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">show.legend =</span> <span class="cn" style="color: #8f5902;
 background-color: null;
 font-style: inherit;">FALSE</span></span>
-<span id="cb1-91">  ) <span class="sc" style="color: #5E5E5E;
+<span id="cb1-93">  ) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span></span>
-<span id="cb1-92">  </span>
-<span id="cb1-93">  <span class="fu" style="color: #4758AB;
+<span id="cb1-94">  </span>
+<span id="cb1-95">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">scale_color_manual</span>(</span>
-<span id="cb1-94">    <span class="at" style="color: #657422;
+<span id="cb1-96">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">values =</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -430,7 +438,7 @@ background-color: null;
 font-style: inherit;">=</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"grey70"</span>),</span>
-<span id="cb1-95">    <span class="at" style="color: #657422;
+<span id="cb1-97">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">labels =</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -455,44 +463,46 @@ background-color: null;
 font-style: inherit;">=</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"Other champions"</span>)</span>
-<span id="cb1-96">  ) <span class="sc" style="color: #5E5E5E;
+<span id="cb1-98">  ) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span></span>
-<span id="cb1-97">  <span class="fu" style="color: #4758AB;
+<span id="cb1-99">  </span>
+<span id="cb1-100">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">labs</span>(</span>
-<span id="cb1-98">    <span class="at" style="color: #657422;
+<span id="cb1-101">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">title =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"CWS Champions: Offense vs Pitching"</span>,</span>
-<span id="cb1-99">    <span class="at" style="color: #657422;
+<span id="cb1-102">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">x =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"ERA (higher = worse pitching)"</span>,</span>
-<span id="cb1-100">    <span class="at" style="color: #657422;
+<span id="cb1-103">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">y =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"Runs scored per game (lower = worse offense)"</span>,</span>
-<span id="cb1-101">    <span class="at" style="color: #657422;
+<span id="cb1-104">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">color =</span> <span class="cn" style="color: #8f5902;
 background-color: null;
 font-style: inherit;">NULL</span></span>
-<span id="cb1-102">  ) <span class="sc" style="color: #5E5E5E;
+<span id="cb1-105">  ) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span></span>
-<span id="cb1-103">  <span class="fu" style="color: #4758AB;
+<span id="cb1-106">  </span>
+<span id="cb1-107">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">theme_minimal</span>(<span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">base_size =</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">13</span>)</span>
-<span id="cb1-104"></span>
-<span id="cb1-105">p1</span></code></pre></div></div>
+<span id="cb1-108"></span>
+<span id="cb1-109">p1</span></code></pre></div></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -689,7 +699,81 @@ font-style: inherit;">13</span>)</span>
 background-color: null;
 font-style: italic;">## == 4. PLOT 3: RUNS PER GAME OVER TIME ==</span></span>
 <span id="cb3-2"></span>
-<span id="cb3-3">p3 <span class="ot" style="color: #003B4F;
+<span id="cb3-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(tidyverse)</span>
+<span id="cb3-4"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(ggrepel)</span>
+<span id="cb3-5"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(grid)   <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># for arrow()</span></span>
+<span id="cb3-6"></span>
+<span id="cb3-7"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Identify groups</span></span>
+<span id="cb3-8">best5_runs <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> cws <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb3-9">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">arrange</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">desc</span>(R_per_game)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb3-10">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">slice</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span>)</span>
+<span id="cb3-11"></span>
+<span id="cb3-12">worst5_runs <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> cws <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb3-13">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">arrange</span>(R_per_game) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb3-14">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">slice</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb3-15">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">filter</span>(<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">!</span>is_worst)  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># exclude Vandy</span></span>
+<span id="cb3-16"></span>
+<span id="cb3-17">vandy <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> cws <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">filter</span>(is_worst)</span>
+<span id="cb3-18"></span>
+<span id="cb3-19">p3 <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -702,69 +786,95 @@ background-color: null;
 font-style: inherit;">y =</span> R_per_game)) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span></span>
-<span id="cb3-4">  <span class="fu" style="color: #4758AB;
+<span id="cb3-20">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Background series</span></span>
+<span id="cb3-21">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">geom_line</span>(<span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">alpha =</span> <span class="fl" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">0.4</span>, <span class="at" style="color: #657422;
+font-style: inherit;">0.25</span>, <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"grey70"</span>) <span class="sc" style="color: #5E5E5E;
+font-style: inherit;">"grey80"</span>) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span></span>
-<span id="cb3-5">  <span class="fu" style="color: #4758AB;
+<span id="cb3-22">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">geom_point</span>(<span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"blue"</span>) <span class="sc" style="color: #5E5E5E;
+font-style: inherit;">"grey80"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.8</span>) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span></span>
-<span id="cb3-6">  <span class="fu" style="color: #4758AB;
+<span id="cb3-23"></span>
+<span id="cb3-24">  <span class="co" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">geom_point</span>(</span>
-<span id="cb3-7">    <span class="at" style="color: #657422;
+font-style: inherit;"># Highlighted dots</span></span>
+<span id="cb3-25">  <span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">data =</span> cws <span class="sc" style="color: #5E5E5E;
+font-style: inherit;">geom_point</span>(<span class="at" style="color: #657422;
 background-color: null;
-font-style: inherit;">%&gt;%</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">filter</span>(is_worst),</span>
-<span id="cb3-8">    <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">x =</span> Year, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">y =</span> R_per_game),</span>
-<span id="cb3-9">    <span class="at" style="color: #657422;
+font-style: inherit;">data =</span> best5_runs, <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"red"</span>,</span>
-<span id="cb3-10">    <span class="at" style="color: #657422;
+font-style: inherit;">"darkgreen"</span>, <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">3</span></span>
-<span id="cb3-11">  ) <span class="sc" style="color: #5E5E5E;
+font-style: inherit;">3</span>) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span></span>
-<span id="cb3-12">  <span class="fu" style="color: #4758AB;
+<span id="cb3-26">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_point</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> worst5_runs, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"purple"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb3-27">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_point</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> vandy, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"red"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3.2</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb3-28"></span>
+<span id="cb3-29">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># === TOP 5 (above) ===</span></span>
+<span id="cb3-30">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">geom_text_repel</span>(</span>
-<span id="cb3-13">    <span class="at" style="color: #657422;
+<span id="cb3-31">    <span class="at" style="color: #657422;
 background-color: null;
-font-style: inherit;">data =</span> cws <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">%&gt;%</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">filter</span>(is_worst),</span>
-<span id="cb3-14">    <span class="fu" style="color: #4758AB;
+font-style: inherit;">data =</span> best5_runs,</span>
+<span id="cb3-32">    <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
 background-color: null;
@@ -775,49 +885,284 @@ background-color: null;
 font-style: inherit;">" ("</span>, Year, <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">")"</span>)),</span>
-<span id="cb3-15">    <span class="at" style="color: #657422;
+<span id="cb3-33">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"darkgreen"</span>,</span>
+<span id="cb3-34">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2.5</span>,</span>
+<span id="cb3-35">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">nudge_y =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.4</span>,</span>
+<span id="cb3-36">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">direction =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"y"</span>,</span>
+<span id="cb3-37">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">box.padding   =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.15</span>,</span>
+<span id="cb3-38">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">point.padding =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.1</span>,</span>
+<span id="cb3-39">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">segment.size  =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.4</span>,</span>
+<span id="cb3-40">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">segment.color =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"darkgreen"</span>,</span>
+<span id="cb3-41">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">arrow =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">arrow</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">length =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">unit</span>(<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.01</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"npc"</span>)),</span>
+<span id="cb3-42">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">max.overlaps =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">Inf</span></span>
+<span id="cb3-43">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb3-44"></span>
+<span id="cb3-45">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># === BOTTOM 5 (below) ===</span></span>
+<span id="cb3-46">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_text_repel</span>(</span>
+<span id="cb3-47">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> worst5_runs,</span>
+<span id="cb3-48">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">label =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">paste0</span>(Team, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">" ("</span>, Year, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">")"</span>)),</span>
+<span id="cb3-49">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"purple"</span>,</span>
+<span id="cb3-50">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2.5</span>,</span>
+<span id="cb3-51">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">nudge_y =</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.4</span>,</span>
+<span id="cb3-52">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">direction =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"y"</span>,</span>
+<span id="cb3-53">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">box.padding   =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.15</span>,</span>
+<span id="cb3-54">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">point.padding =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.1</span>,</span>
+<span id="cb3-55">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">segment.size  =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.4</span>,</span>
+<span id="cb3-56">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">segment.color =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"purple"</span>,</span>
+<span id="cb3-57">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">arrow =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">arrow</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">length =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">unit</span>(<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.01</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"npc"</span>)),</span>
+<span id="cb3-58">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">max.overlaps =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">Inf</span></span>
+<span id="cb3-59">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb3-60"></span>
+<span id="cb3-61">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># === Vanderbilt (2014) (slightly above) ===</span></span>
+<span id="cb3-62">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_text_repel</span>(</span>
+<span id="cb3-63">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> vandy,</span>
+<span id="cb3-64">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">label =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">paste0</span>(Team, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">" ("</span>, Year, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">")"</span>)),</span>
+<span id="cb3-65">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"red"</span>,</span>
-<span id="cb3-16">    <span class="at" style="color: #657422;
+<span id="cb3-66">    <span class="at" style="color: #657422;
 background-color: null;
-font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+font-style: inherit;">size =</span> <span class="fl" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">3</span></span>
-<span id="cb3-17">  ) <span class="sc" style="color: #5E5E5E;
+font-style: inherit;">2.5</span>,</span>
+<span id="cb3-67">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">nudge_y =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>,</span>
+<span id="cb3-68">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">direction =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"y"</span>,</span>
+<span id="cb3-69">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">box.padding   =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.15</span>,</span>
+<span id="cb3-70">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">point.padding =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.1</span>,</span>
+<span id="cb3-71">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">segment.size  =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.4</span>,</span>
+<span id="cb3-72">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">segment.color =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"red"</span>,</span>
+<span id="cb3-73">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">arrow =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">arrow</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">length =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">unit</span>(<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.01</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"npc"</span>)),</span>
+<span id="cb3-74">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">max.overlaps =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">Inf</span></span>
+<span id="cb3-75">  ) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span></span>
-<span id="cb3-18">  <span class="fu" style="color: #4758AB;
+<span id="cb3-76"></span>
+<span id="cb3-77">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">labs</span>(</span>
-<span id="cb3-19">    <span class="at" style="color: #657422;
+<span id="cb3-78">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">title =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"Runs per Game by CWS Champions"</span>,</span>
-<span id="cb3-20">    <span class="at" style="color: #657422;
+<span id="cb3-79">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">x =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"Year"</span>,</span>
-<span id="cb3-21">    <span class="at" style="color: #657422;
+<span id="cb3-80">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">y =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"Runs scored per game"</span></span>
-<span id="cb3-22">  ) <span class="sc" style="color: #5E5E5E;
+<span id="cb3-81">  ) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span></span>
-<span id="cb3-23">  <span class="fu" style="color: #4758AB;
+<span id="cb3-82">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># extra space for labels</span></span>
+<span id="cb3-83">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">scale_y_continuous</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">expand =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">expansion</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">mult =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.2</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.2</span>))) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb3-84">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">theme_minimal</span>(<span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">base_size =</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">13</span>)</span>
-<span id="cb3-24"></span>
-<span id="cb3-25">p3</span></code></pre></div></div>
+<span id="cb3-85"></span>
+<span id="cb3-86">p3</span></code></pre></div></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -835,7 +1180,67 @@ font-style: inherit;">13</span>)</span>
 background-color: null;
 font-style: italic;">## == 5. PLOT 4: ERA OVER TIME ==</span></span>
 <span id="cb4-2"></span>
-<span id="cb4-3">p4 <span class="ot" style="color: #003B4F;
+<span id="cb4-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(tidyverse)</span>
+<span id="cb4-4"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(ggrepel)</span>
+<span id="cb4-5"></span>
+<span id="cb4-6"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Create best 5 and worst 5 ERA lists</span></span>
+<span id="cb4-7">best5  <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> cws <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">arrange</span>(ERA) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">slice</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span>)</span>
+<span id="cb4-8"></span>
+<span id="cb4-9">worst5 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> cws <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb4-10">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">arrange</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">desc</span>(ERA)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb4-11">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">slice</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb4-12">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># REMOVE Vanderbilt 2014 from being labeled again</span></span>
+<span id="cb4-13">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">filter</span>(<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">!</span>is_worst)</span>
+<span id="cb4-14"></span>
+<span id="cb4-15">p4 <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -848,7 +1253,7 @@ background-color: null;
 font-style: inherit;">y =</span> ERA)) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span></span>
-<span id="cb4-4">  <span class="fu" style="color: #4758AB;
+<span id="cb4-16">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">geom_line</span>(<span class="at" style="color: #657422;
 background-color: null;
@@ -861,56 +1266,64 @@ background-color: null;
 font-style: inherit;">"grey70"</span>) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span></span>
-<span id="cb4-5">  <span class="fu" style="color: #4758AB;
+<span id="cb4-17">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">geom_point</span>(<span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"blue"</span>) <span class="sc" style="color: #5E5E5E;
+font-style: inherit;">"blue"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span></span>
-<span id="cb4-6">  <span class="fu" style="color: #4758AB;
+<span id="cb4-18"></span>
+<span id="cb4-19">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Highlight Vanderbilt (is_worst team)</span></span>
+<span id="cb4-20">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">geom_point</span>(</span>
-<span id="cb4-7">    <span class="at" style="color: #657422;
+<span id="cb4-21">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">data =</span> cws <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">%&gt;%</span> <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">filter</span>(is_worst),</span>
-<span id="cb4-8">    <span class="fu" style="color: #4758AB;
+<span id="cb4-22">    <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">x =</span> Year, <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">y =</span> ERA),</span>
-<span id="cb4-9">    <span class="at" style="color: #657422;
+<span id="cb4-23">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"red"</span>,</span>
-<span id="cb4-10">    <span class="at" style="color: #657422;
+<span id="cb4-24">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">3</span></span>
-<span id="cb4-11">  ) <span class="sc" style="color: #5E5E5E;
+<span id="cb4-25">  ) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span></span>
-<span id="cb4-12">  <span class="fu" style="color: #4758AB;
+<span id="cb4-26">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">geom_text_repel</span>(</span>
-<span id="cb4-13">    <span class="at" style="color: #657422;
+<span id="cb4-27">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">data =</span> cws <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">%&gt;%</span> <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">filter</span>(is_worst),</span>
-<span id="cb4-14">    <span class="fu" style="color: #4758AB;
+<span id="cb4-28">    <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
 background-color: null;
@@ -921,49 +1334,114 @@ background-color: null;
 font-style: inherit;">" ("</span>, Year, <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">")"</span>)),</span>
-<span id="cb4-15">    <span class="at" style="color: #657422;
+<span id="cb4-29">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"red"</span>,</span>
-<span id="cb4-16">    <span class="at" style="color: #657422;
+<span id="cb4-30">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>,</span>
+<span id="cb4-31">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">nudge_y =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.25</span>,</span>
+<span id="cb4-32">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">direction =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"y"</span>,</span>
+<span id="cb4-33">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">segment.color =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">NA</span></span>
+<span id="cb4-34">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb4-35"></span>
+<span id="cb4-36">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_text_repel</span>(</span>
+<span id="cb4-37">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> best5,</span>
+<span id="cb4-38">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">label =</span> Team),</span>
+<span id="cb4-39">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"darkgreen"</span>,</span>
+<span id="cb4-40">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">3</span></span>
-<span id="cb4-17">  ) <span class="sc" style="color: #5E5E5E;
+<span id="cb4-41">  ) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span></span>
-<span id="cb4-18">  <span class="fu" style="color: #4758AB;
+<span id="cb4-42">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_text_repel</span>(</span>
+<span id="cb4-43">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> worst5,</span>
+<span id="cb4-44">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">label =</span> Team),</span>
+<span id="cb4-45">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"purple"</span>,</span>
+<span id="cb4-46">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span></span>
+<span id="cb4-47">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb4-48"></span>
+<span id="cb4-49">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">labs</span>(</span>
-<span id="cb4-19">    <span class="at" style="color: #657422;
+<span id="cb4-50">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">title =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"ERA of CWS Champions"</span>,</span>
-<span id="cb4-20">    <span class="at" style="color: #657422;
+<span id="cb4-51">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">x =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"Year"</span>,</span>
-<span id="cb4-21">    <span class="at" style="color: #657422;
+<span id="cb4-52">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">y =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"ERA (lower is better pitching)"</span></span>
-<span id="cb4-22">  ) <span class="sc" style="color: #5E5E5E;
+<span id="cb4-53">  ) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span></span>
-<span id="cb4-23">  <span class="fu" style="color: #4758AB;
+<span id="cb4-54">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">theme_minimal</span>(<span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">base_size =</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">13</span>)</span>
-<span id="cb4-24"></span>
-<span id="cb4-25">p4</span></code></pre></div></div>
+<span id="cb4-55"></span>
+<span id="cb4-56">p4</span></code></pre></div></div>
 </details>
 <div class="cell-output-display">
 <div>
